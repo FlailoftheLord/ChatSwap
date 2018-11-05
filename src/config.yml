@@ -1,0 +1,100 @@
+#-----------------------------------------------------------------
+#==================================================================#
+#                                                                  #
+#                 Plugin by FlailoftheLord.                        #
+#        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                   #
+#   for questions please pm me on discord at FlailoftheLord#6842   #
+#          Join my discord server for faster support:              #
+#                https://discord.gg/wuxW5PS                        #
+#   ______               __        _____                           #
+#   |       |           /  \         |        |                    #
+#   |__     |          /____\        |        |                    #
+#   |       |         /      \       |        |                    #
+#   |       |_____   /        \    __|__      |______              #
+#                                                                  #
+#==================================================================#
+#-----------------------------------------------------------------
+
+# The way this works is, you add a phrase or word or list of phrases and words
+# which, when said in chat by a player, will be replaced with a pre-defined
+# word or phrase from a list either randomly, or the same one every time if you only add one word.
+# its explained in more detail below :>
+
+# Prefix for messages, such as reloading and modifications
+Prefix: "&6&lCS&8:"
+
+ReloadMessage: "&aplugin files reloaded!"
+
+NoPermissionMessage: "&cyou don't have permission to use /chatswap"
+
+# Ignore spaces in between letters?
+IgnoreSpaces: false
+
+# Case sensetive?
+# or not... set to false to disable case checking
+CaseSensitive: false
+
+
+# only execute if the word is exactly?
+# if set to false it will replace anything with that word or phrase in it, 
+#like for example your word is 'dumb'  if somebody says "you're so dumb" it will treat it as if they said 'dumb'
+# and will replace the whole phrase with your selected replacement.
+# if set to true, it will only execute if the exact word or phrase is said in chat.
+CheckExact: false
+
+#========# Messages Section #========#
+# Here you can add, delete and modify all the
+# messages, responses and triggers for the 
+# entire bot.
+# to add a new word response simply add a new section starting with the next number in line.
+# so for example 
+# 5:
+#  Word:
+#  - "loser"
+#  - "fuck"
+#  - "f u"
+#  Replacements:
+#  - "you're beautiful"
+#  - "ily!"
+#  - "If you give me 20 dollars i'll give u 19 back"
+#  - "ur ez"
+#               
+# just add the word or multiple words or phrases.
+# then add the phrases or words that will replace that in chat.
+#
+# You can use the two placeholders %player% for the players name and %player_location% for the players coordinates to be shown in chat.
+#    
+# Its that simple!
+# Enjoy!
+
+
+WordReplacer:
+  
+  1:
+    Word: 
+    - "stupid"
+    Replacement:
+    - "hai"
+    - "i decided to eat a block of wood today!"
+    - "are you tired?"
+  
+  2:
+    Word:
+    - "fuck"
+    - "fuk"
+    - "fu"
+    - "f*ck"
+    Replacement:
+    - "marry me pls"
+    - "don't die"
+    - "free cake at my house!"
+
+  3:
+    Word: 
+    - "kys"
+    Replacement:
+    - "I'm giving away all my items! my location is %player_location%"
+
+
+
+
