@@ -14,7 +14,7 @@ public class CsCommands implements CommandExecutor {
 
 	private ConsoleCommandSender console = Bukkit.getConsoleSender();
 
-	private Chat chat = new Chat();
+	private Chat tools = new Chat();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -27,7 +27,7 @@ public class CsCommands implements CommandExecutor {
 
 			String version = plugin.getDescription().getVersion();
 
-			String defaultMessage = chat.m("&3ChatSwap &7v" + version + " &2by FlailoftheLord.", "", "");
+			String defaultMessage = tools.chat("&3ChatSwap &7v" + version + " &2by FlailoftheLord.", null);
 
 			if (sender instanceof Player) {
 
@@ -43,9 +43,9 @@ public class CsCommands implements CommandExecutor {
 
 							plugin.reloadConfig();
 
-							console.sendMessage(chat.m("&aChatSwap config reloaded!", "", ""));
+							console.sendMessage(tools.chat("&aChatSwap config reloaded!", null));
 
-							player.sendMessage(chat.m(reloadMessage, "", ""));
+							player.sendMessage(tools.chat(reloadMessage, null));
 
 						} else {
 
@@ -73,7 +73,7 @@ public class CsCommands implements CommandExecutor {
 
 						plugin.reloadConfig();
 
-						console.sendMessage(chat.m("&aChatSwap config reloaded!", "", ""));
+						console.sendMessage(tools.chat("&aChatSwap config reloaded!", null));
 
 					} else {
 

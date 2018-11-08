@@ -1,8 +1,28 @@
+/*
+ *  Copyright (C) 2018 FlailoftheLord
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ */
+
 package me.flail.ChatSwap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import me.flail.ChatSwap.Listeners.ChatListener;
 
 public class ChatSwap extends JavaPlugin {
 
@@ -11,29 +31,34 @@ public class ChatSwap extends JavaPlugin {
 	@Override
 	public void onEnable() {
 
+		Chat tools = new Chat();
+
 		// save files
 		saveDefaultConfig();
 
 		// Register Events and Commands
-		getServer().getPluginManager().registerEvents(new ChatReplacer(), this);
+		console.sendMessage("...");
+		getServer().getPluginManager().registerEvents(new ChatListener(), this);
 
 		getCommand("chatswap").setExecutor(new CsCommands());
 
 		// Friendly console spam :>
 		String version = getDescription().getVersion();
 
-		console.sendMessage(new Chat().m("&3------====|||====------", "", ""));
-		console.sendMessage(new Chat().m(" &aChatSwap &7v" + version, "", ""));
-		console.sendMessage(new Chat().m("   &2by FlailoftheLord.", "", ""));
-		console.sendMessage(new Chat().m("  &aThe final solution to chat moderation.", "", ""));
-		console.sendMessage(new Chat().m("&3------====|||====------", "", ""));
+		console.sendMessage(tools.chat("&3------====|||====------", null));
+		console.sendMessage(tools.chat(" &aChatSwap &7v" + version, null));
+		console.sendMessage(tools.chat("   &2by FlailoftheLord.", null));
+		console.sendMessage(tools.chat("  &aThe final solution to chat moderation.", null));
+		console.sendMessage(tools.chat("&3------====|||====------", null));
 
 	}
 
 	@Override
 	public void onDisable() {
 
-		console.sendMessage(new Chat().m("&3Bye bye!...  &o*slips and falls down stairs*", "", ""));
+		Chat tools = new Chat();
+
+		console.sendMessage(tools.chat("&3Bye bye!...  &o*slips and falls down stairs*", null));
 
 	}
 

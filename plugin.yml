@@ -1,9 +1,10 @@
 main: me.flail.ChatSwap.ChatSwap
 name: ChatSwap
 author: FlailoftheLord
-version: 1.1
+version: 1.2
 api-version: 1.13
 description: replace unwanted chat with something more healthy :>
+softdepend: [Vault]
 
 commands:
   chatswap:

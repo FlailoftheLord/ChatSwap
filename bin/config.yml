@@ -25,39 +25,41 @@ Prefix: "&6&lCS&8:"
 
 ReloadMessage: "&aplugin files reloaded!"
 
-NoPermissionMessage: "&cyou don't have permission to use /chatswap"
-
-# Ignore spaces in between letters?
-IgnoreSpaces: false
-
-# Case sensetive?
-# or not... set to false to disable case checking
-CaseSensitive: false
-
-
-# only execute if the word is exactly?
-# if set to false it will replace anything with that word or phrase in it, 
-#like for example your word is 'dumb'  if somebody says "you're so dumb" it will treat it as if they said 'dumb'
-# and will replace the whole phrase with your selected replacement.
-# if set to true, it will only execute if the exact word or phrase is said in chat.
-CheckExact: false
-
 #========# Messages Section #========#
 # Here you can add, delete and modify all the
 # messages, responses and triggers for the 
 # entire bot.
-# to add a new word response simply add a new section starting with the next number in line.
-# so for example 
-# 5:
-#  Word:
-#  - "loser"
-#  - "fuck"
-#  - "f u"
-#  Replacements:
-#  - "you're beautiful"
-#  - "ily!"
-#  - "If you give me 20 dollars i'll give u 19 back"
-#  - "ur ez"
+# to add a new word response simply add a new section and name it whatever you want.
+# Then set the 'Type: ' to one of the three types listed below:
+#  Types:
+#   ~ "REPLACE-EXACT" - replaces the exact word or phrase in the players chat message
+#   ~ "REPLACE-ALL"  - if the players chat message contains the word or phrase, their entire message will be replaced with the replacements.
+#   ~ "RESPOND"  - sends a message back to the player, either just one message, or if you put multiple messages 
+# in the Replacements:  section, it will send a random one to the player each time.
+# 
+#  Next, for the CaseSensitive, set it to false to ignore lower and uppercase letters, it treats them as the same.
+#
+#  Then for the IgnoreSpaces, just ignores the spaces in the phrase or message, so if somebody says "c r a p" it will treat it as "crap"
+#  set it to false to disable that.
+#
+# For CheckExact: only execute if the players chat message EXACTLY (Ignoring case) matches the word.
+# For example if set to true, and the player says: "haha you suck" but the word is "suck", it won't catch it.
+# But if set to false, it will catch any message with the word "suck" in it.
+#
+# So for example 
+# bad-word-blocker:
+#   Type: "REPLACE-ALL"
+#   CaseSensitive: false
+#   IgnoreSpaces: true
+#   Word:
+#   - "loser"
+#   - "fuck"
+#   - "f u"
+#   Replacements:
+#   - "you're beautiful"
+#   - "ily!"
+#   - "If you give me 20 dollars i'll give u 19 back"
+#   - "ur ez"
 #               
 # just add the word or multiple words or phrases.
 # then add the phrases or words that will replace that in chat.
@@ -67,33 +69,54 @@ CheckExact: false
 # Its that simple!
 # Enjoy!
 
-
-WordReplacer:
-  
-  1:
-    Word: 
-    - "stupid"
-    Replacement:
-    - "hai"
-    - "i decided to eat a block of wood today!"
-    - "are you tired?"
-  
-  2:
-    Word:
+ChatMessages:
+  message-one:
+    Type: "REPLACE-ALL"
+    CaseSensitive: false
+    IgnoreSpaces: true
+    CheckExact: false
+    Words:
+    - "shit"
+    - "crap"
+    - "u suck"
+    - "you suck"
+    - "ur ez"
+    - "your ez"
     - "fuck"
-    - "fuk"
-    - "fu"
-    - "f*ck"
-    Replacement:
-    - "marry me pls"
-    - "don't die"
-    - "free cake at my house!"
-
-  3:
-    Word: 
-    - "kys"
-    Replacement:
-    - "I'm giving away all my items! my location is %player_location%"
+    Replacements:
+    - "ooohh..."
+    - "wow, i didn't type this"
+    - "hello my friend!"
+    - "i'm selling oak logs for $2 a stack!"
+    - "flyyyinnnn awayyy!"
+    - "you're a very beautiful person"
+    
+  message-two:
+    Type: "REPLACE-EXACT"
+    CaseSensitive: false
+    IgnoreSpaces: false
+    CheckExact: false
+    Words:
+    - "Oof"
+    - "cripes"
+    - "uhm"
+    - "md_5"
+    Replacements:
+    - "yeet!"
+    
+  message-three:
+    Type: "RESPOND"
+    CaseSensitive: false
+    IgnoreSpaces: true
+    CheckExact: true
+    Words:
+    - "help"
+    - "help me pls"
+    - "help!"
+    - "i need help"
+    - "can somebody help me"
+    Replacements:
+    - "%prefix% &ayou can get help by typing &e/help &aor try messaging an online staff"
 
 
 
