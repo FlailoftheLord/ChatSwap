@@ -30,79 +30,45 @@ public class ChatListener implements Listener {
 
 		String message = event.getMessage();
 
+		String msg = event.getMessage().replaceAll(" ", "").toLowerCase();
+
 		ConfigurationSection cm = config.getConfigurationSection("ChatMessages");
 
 		Set<String> chatMessages = cm.getKeys(false);
-
-		boolean checkExact = config.getBoolean("CheckExact");
 
 		for (String m : chatMessages) {
 
 			List<String> words = cm.getStringList(m + ".Words");
 
-			for (String word : words) {
+			for (String w : words) {
 
-				if (checkExact) {
+				String word = w.replaceAll(" ", "").toLowerCase();
 
-					if (message.equalsIgnoreCase(word)) {
+				if (msg.contains(word)) {
 
-						String type = cm.getString(m + ".Type");
+					String type = cm.getString(m + ".Type");
 
-						switch (type.toLowerCase()) {
+					switch (type.toLowerCase()) {
 
-						case "replace-exact":
-							String chatSwapperExact = new ChatSwapper().swap(message, true, player);
+					case "replace-exact":
+						String chatSwapperExact = new ChatSwapper().swap(message, true, player);
 
-							event.setMessage(tools.chat(chatSwapperExact, player));
-							break;
+						event.setMessage(tools.chat(chatSwapperExact, player));
+						break;
 
-						case "replace-all":
-							String chatSwapperAll = new ChatSwapper().swap(message, false, player);
+					case "replace-all":
+						String chatSwapperAll = new ChatSwapper().swap(message, false, player);
 
-							event.setMessage(tools.chat(chatSwapperAll, player));
-							break;
+						event.setMessage(tools.chat(chatSwapperAll, player));
+						break;
 
-						case "respond":
-							String chatResponder = new ChatResponder().respond(message);
+					case "respond":
+						String chatResponder = new ChatResponder().respond(message);
 
-							event.setCancelled(true);
+						event.setCancelled(true);
 
-							player.sendMessage(tools.chat(chatResponder, player));
-							break;
-
-						}
-
-					}
-
-				} else {
-
-					if (message.toLowerCase().contains(word.toLowerCase())) {
-
-						String type = cm.getString(m + ".Type");
-
-						switch (type.toLowerCase()) {
-
-						case "replace-exact":
-							String chatSwapperExact = new ChatSwapper().swap(message, true, player);
-
-							event.setMessage(tools.chat(chatSwapperExact, player));
-							break;
-
-						case "replace-all":
-							String chatSwapperAll = new ChatSwapper().swap(message, false, player);
-
-							event.setMessage(tools.chat(chatSwapperAll, player));
-							break;
-
-						case "respond":
-							String chatResponder = new ChatResponder().respond(message);
-
-							event.setCancelled(true);
-
-							player.sendMessage(tools.chat(chatResponder, player));
-							break;
-
-						}
+						player.sendMessage(tools.chat(chatResponder, player));
+						break;
 
 					}
 

@@ -70,6 +70,17 @@ ReloadMessage: "&aplugin files reloaded!"
 # Enjoy!
 
 ChatMessages:
+  test:
+    Type: "REPLACE-Exact"
+    CaseSensitive: true
+    IgnoreSpaces: true
+    CheckExact: true
+    Words:
+    - "test"
+    - "testing"
+    Replacements:
+    - "works properly"
+
   message-one:
     Type: "REPLACE-ALL"
     CaseSensitive: false

@@ -1,6 +1,6 @@
 /*
  *  Copyright (C) 2018 FlailoftheLord
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -13,7 +13,7 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  */
 
 package me.flail.ChatSwap;
@@ -27,6 +27,15 @@ import me.flail.ChatSwap.Listeners.ChatListener;
 public class ChatSwap extends JavaPlugin {
 
 	private ConsoleCommandSender console = Bukkit.getConsoleSender();
+
+	@Override
+	public void onDisable() {
+
+		Chat tools = new Chat();
+
+		console.sendMessage(tools.chat("&3Bye bye!...  &o*slips and falls down stairs*", null));
+
+	}
 
 	@Override
 	public void onEnable() {
@@ -50,15 +59,6 @@ public class ChatSwap extends JavaPlugin {
 		console.sendMessage(tools.chat("   &2by FlailoftheLord.", null));
 		console.sendMessage(tools.chat("  &aThe final solution to chat moderation.", null));
 		console.sendMessage(tools.chat("&3------====|||====------", null));
-
-	}
-
-	@Override
-	public void onDisable() {
-
-		Chat tools = new Chat();
-
-		console.sendMessage(tools.chat("&3Bye bye!...  &o*slips and falls down stairs*", null));
 
 	}
 

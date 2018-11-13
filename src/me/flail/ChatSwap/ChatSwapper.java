@@ -1,8 +1,10 @@
 package me.flail.ChatSwap;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
@@ -20,20 +22,6 @@ public class ChatSwapper {
 	private ConsoleCommandSender console = Bukkit.getConsoleSender();
 
 	private Chat tools = new Chat();
-
-	public String replacer(String message, List<String> responses, String w) {
-
-		int responseSize = responses.size();
-
-		int randomNumber = ThreadLocalRandom.current().nextInt(0, responseSize);
-
-		String response = responses.get(randomNumber);
-
-		String replacement = message.toLowerCase().replace(w.toLowerCase(), response);
-
-		return replacement;
-
-	}
 
 	public String swap(String message, boolean exact, Player player) {
 
@@ -53,9 +41,9 @@ public class ChatSwapper {
 
 			ConfigurationSection section = cm.getConfigurationSection(nextSection);
 
-			player.sendMessage(nextSection);
-
 			List<String> words = section.getStringList("Words");
+
+			List<String> replacements = section.getStringList("Replacements");
 
 			boolean caseSensitive = section.getBoolean("CaseSensitive");
 
@@ -63,13 +51,104 @@ public class ChatSwapper {
 
 			boolean checkExact = section.getBoolean("CheckExact");
 
+			if (exact) {
+
+				if (ignoreSpaces) {
+
+					String noSpaceMessage = message.replace(" ", "");
+
+					List<String> noSpaceWords = new ArrayList<>();
+
+					for (String word : words) {
+						word.replaceAll(" ", "");
+						noSpaceWords.add(word);
+					}
+
+					if (caseSensitive) {
+
+						if (checkExact) {
+
+							for (String word : noSpaceWords) {
+
+								if (noSpaceMessage.equals(word)) {
+
+									replacement = replaceExact(message, replacements, word);
+
+								}
+
+							}
+
+						} else {
+
+							for (String word : noSpaceWords) {
+
+								if (noSpaceMessage.contains(word)) {
+
+									replacement = replaceExact(message, replacements, word);
+
+								}
+
+							}
+
+						}
+
+					} else {
+
+						if (checkExact) {
+
+							for (String word : noSpaceWords) {
+
+								if (noSpaceMessage.equalsIgnoreCase(word)) {
+
+									replacement = replaceExact(message, replacements, word);
+
+								}
+
+							}
+
+						} else {
+
+							for (String word : noSpaceWords) {
+
+								if (noSpaceMessage.toLowerCase().contains(word.toLowerCase())) {
+
+									replacement = replaceExact(message, replacements, word);
+
+								}
+
+							}
+
+						}
+
+					}
+
+				} else {
+
+				}
+
+			}
+
 		}
 
 		return replacement;
 
 	}
 
-	public String swapper(String message, List<String> responses) {
+	public String replaceExact(String message, List<String> responses, String w) {
+
+		int responseSize = responses.size();
+
+		int randomNumber = ThreadLocalRandom.current().nextInt(0, responseSize);
+
+		String response = responses.get(randomNumber);
+
+		String replacement = message.replaceAll("(?i)" + Pattern.quote(w), response);
+
+		return replacement;
+
+	}
+
+	public String repalceAll(String message, List<String> responses) {
 
 		int responseSize = responses.size();
 
