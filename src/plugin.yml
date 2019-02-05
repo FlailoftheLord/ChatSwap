@@ -1,0 +1,26 @@
+main: net.flail.chatswap.ChatSwap
+name: ChatSwap
+author: FlailoftheLord
+version: 1.3
+api-version: 1.13
+description: replace unwanted chat with something more healthy :>
+softdepend: [Vault]
+
+commands:
+  chatswap:
+    description: main command
+    aliases: [cs, cswap]
+    
+permissions:
+  chatswap.command:
+    description: use the main command
+    default: op
+    
+  chatswap.notify:
+    description: get notified of logs and other stuffs
+    default: op
+    children:
+      chatswap.notify.logs: true
+      chatswap.notify.chat: true
+      chatswap.notify.update: true
+    

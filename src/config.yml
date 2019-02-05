@@ -3,8 +3,7 @@
 #                                                                  #
 #                 Plugin by FlailoftheLord.                        #
 #        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-                   #
-#   for questions please pm me on discord at FlailoftheLord#6842   #
-#          Join my discord server for faster support:              #
+#        For questions please join my discord server:              #
 #                https://discord.gg/wuxW5PS                        #
 #   ______               __        _____                           #
 #   |       |           /  \         |        |                    #
@@ -21,114 +20,51 @@
 # its explained in more detail below :>
 
 # Prefix for messages, such as reloading and modifications
+# use the  %prefix%  placeholder.
 Prefix: "&6&lCS&8:"
 
-ReloadMessage: "&aplugin files reloaded!"
+ReloadMessage: "%prefix% &aplugin files reloaded!"
 
-#========# Messages Section #========#
-# Here you can add, delete and modify all the
-# messages, responses and triggers for the 
-# entire bot.
-# to add a new word response simply add a new section and name it whatever you want.
-# Then set the 'Type: ' to one of the three types listed below:
-#  Types:
-#   ~ "REPLACE-EXACT" - replaces the exact word or phrase in the players chat message
-#   ~ "REPLACE-ALL"  - if the players chat message contains the word or phrase, their entire message will be replaced with the replacements.
-#   ~ "RESPOND"  - sends a message back to the player, either just one message, or if you put multiple messages 
-# in the Replacements:  section, it will send a random one to the player each time.
-# 
-#  Next, for the CaseSensitive, set it to false to ignore lower and uppercase letters, it treats them as the same.
-#
-#  Then for the IgnoreSpaces, just ignores the spaces in the phrase or message, so if somebody says "c r a p" it will treat it as "crap"
-#  set it to false to disable that.
-#
-# For CheckExact: only execute if the players chat message EXACTLY (Ignoring case) matches the word.
-# For example if set to true, and the player says: "haha you suck" but the word is "suck", it won't catch it.
-# But if set to false, it will catch any message with the word "suck" in it.
-#
-# So for example 
-# bad-word-blocker:
-#   Type: "REPLACE-ALL"
-#   CaseSensitive: false
-#   IgnoreSpaces: true
-#   Word:
-#   - "loser"
-#   - "fuck"
-#   - "f u"
-#   Replacements:
-#   - "you're beautiful"
-#   - "ily!"
-#   - "If you give me 20 dollars i'll give u 19 back"
-#   - "ur ez"
-#               
-# just add the word or multiple words or phrases.
-# then add the phrases or words that will replace that in chat.
-#
-# You can use the two placeholders %player% for the players name and %player_location% for the players coordinates to be shown in chat.
-#    
-# Its that simple!
-# Enjoy!
+# Wether to pick a random response/replacement when there are multiple options in the list.
+# setting to false will pick the corosponding message, or use the first one if there aren't enough to go around.
+RandomReplacements: true
 
-ChatMessages:
-  test:
-    Type: "REPLACE-Exact"
-    CaseSensitive: true
-    IgnoreSpaces: true
-    CheckExact: true
-    Words:
-    - "test"
-    - "testing"
-    Replacements:
-    - "works properly"
+# This entire configuration below is all modular, simply add a new section with whatever name you like!
+# then add the sections:
+#  messages, responses/replacements... ect.
+# if you'r enot sure follow the template below
+#
+# Valid types are 'replace' , 'respond' , and 'swap'
+# replace will replace that word/phrase in the chat message sent.
+# swap will swap the entire message with the response.
+# respond will send a message back to the player.
 
-  message-one:
-    Type: "REPLACE-ALL"
-    CaseSensitive: false
-    IgnoreSpaces: true
-    CheckExact: false
-    Words:
-    - "shit"
-    - "crap"
+ChatSwap:
+
+  ExampleOne:
+    type: replace
+    ignore-punctuation: true
+    ignore-spaces: true
+    ignore-case: true
+    messages:
+    - "suck"
     - "u suck"
     - "you suck"
-    - "ur ez"
-    - "your ez"
+    replacements:
+    - "hiya!"
+  
+  SectionTwo:
+    type: swap
+    ignore-punctuation: false
+    ignore-spaces: true
+    ignore-case: true
+    messages:
     - "fuck"
-    Replacements:
-    - "ooohh..."
-    - "wow, i didn't type this"
-    - "hello my friend!"
-    - "i'm selling oak logs for $2 a stack!"
-    - "flyyyinnnn awayyy!"
-    - "you're a very beautiful person"
-    
-  message-two:
-    Type: "REPLACE-EXACT"
-    CaseSensitive: false
-    IgnoreSpaces: false
-    CheckExact: false
-    Words:
-    - "Oof"
-    - "cripes"
-    - "uhm"
-    - "md_5"
-    Replacements:
-    - "yeet!"
-    
-  message-three:
-    Type: "RESPOND"
-    CaseSensitive: false
-    IgnoreSpaces: true
-    CheckExact: true
-    Words:
-    - "help"
-    - "help me pls"
-    - "help!"
-    - "i need help"
-    - "can somebody help me"
-    Replacements:
-    - "%prefix% &ayou can get help by typing &e/help &aor try messaging an online staff"
-
-
-
+    - "nigger"
+    - "kys"
+    - "kill yourself"
+    replacements:
+    - "sorry"
+    - "oh, my bad!"
+    - "<3"
 
